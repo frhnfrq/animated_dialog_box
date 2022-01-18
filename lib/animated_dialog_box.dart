@@ -5,13 +5,10 @@ import 'package:vector_math/vector_math.dart' as math;
 
 class animated_dialog_box {
   static Future showCustomAlertBox({
-    @required BuildContext context,
-    @required Widget yourWidget,
-    @required Widget firstButton,
+    required BuildContext context,
+    required Widget yourWidget,
+    required Widget firstButton,
   }) {
-    assert(context != null, "context is null!!");
-    assert(yourWidget != null, "yourWidget is null!!");
-    assert(firstButton != null, "Button is null!!");
     return showDialog(
         context: context,
         builder: (context) {
@@ -32,63 +29,64 @@ class animated_dialog_box {
   }
 
   static Future showScaleAlertBox({
-    @required BuildContext context,
-    @required Widget yourWidget,
-    Widget icon,
-    Widget title,
-    @required Widget firstButton,
-    Widget secondButton,
+    required BuildContext context,
+    required Widget yourWidget,
+    Widget? icon,
+    Widget? title,
+    required Widget firstButton,
+    Widget? secondButton,
   }) {
     assert(context != null, "context is null!!");
     assert(yourWidget != null, "yourWidget is null!!");
     assert(firstButton != null, "button is null!!");
     return showGeneralDialog(
-        barrierColor: Colors.black.withOpacity(0.7),
-        transitionBuilder: (context, a1, a2, widget) {
-          return Transform.scale(
-            scale: a1.value,
-            child: Opacity(
-              opacity: a1.value,
-              child: AlertDialog(
-                shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15.0)),
-                title: title,
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    icon,
-                    Container(
-                      height: 10,
-                    ),
-                    yourWidget
-                  ],
-                ),
-                actions: <Widget>[
-                  firstButton,
-                  secondButton,
+      barrierColor: Colors.black.withOpacity(0.7),
+      transitionBuilder: (context, a1, a2, widget) {
+        return Transform.scale(
+          scale: a1.value,
+          child: Opacity(
+            opacity: a1.value,
+            child: AlertDialog(
+              shape:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+              title: title,
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  icon!,
+                  Container(
+                    height: 10,
+                  ),
+                  yourWidget
                 ],
               ),
+              actions: <Widget>[
+                firstButton,
+                secondButton!,
+              ],
             ),
-          );
-        },
-        transitionDuration: Duration(milliseconds: 200),
-        barrierDismissible: true,
-        barrierLabel: '',
-        context: context,
-        pageBuilder: (context, animation1, animation2) {});
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 200),
+      barrierDismissible: true,
+      barrierLabel: '',
+      context: context,
+      pageBuilder: (BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
+        return Container();
+      },
+    );
   }
 
   static Future showInOutDailog({
-    @required BuildContext context,
-    @required Widget yourWidget,
-    Widget icon,
-    Widget title,
-    @required Widget firstButton,
-    Widget secondButton,
+    required BuildContext context,
+    required Widget yourWidget,
+    Widget? icon,
+    Widget? title,
+    required Widget firstButton,
+    Widget? secondButton,
   }) {
-    assert(context != null, "context is null!!");
-    assert(yourWidget != null, "yourWidget is null!!");
-    assert(firstButton != null, "button is null!!");
     return showGeneralDialog(
         barrierColor: Colors.black.withOpacity(0.7),
         transitionBuilder: (context, a1, a2, widget) {
@@ -104,14 +102,14 @@ class animated_dialog_box {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    icon,
+                    icon!,
                     Container(
                       height: 10,
                     ),
                     yourWidget
                   ],
                 ),
-                actions: <Widget>[firstButton, secondButton],
+                actions: <Widget>[firstButton, secondButton!],
               ),
             ),
           );
@@ -120,23 +118,25 @@ class animated_dialog_box {
         barrierDismissible: true,
         barrierLabel: '',
         context: context,
-        pageBuilder: (context, animation1, animation2) {});
+        pageBuilder: (context, animation1, animation2) {
+          return Container();
+        });
   }
 
   static Future showRotatedAlert({
-    @required BuildContext context,
-    @required Widget yourWidget,
-    Widget icon,
-    Widget title,
-    @required Widget firstButton,
-    Widget secondButton,
+    required BuildContext context,
+    required Widget yourWidget,
+    Widget? icon,
+    Widget? title,
+    required Widget firstButton,
+    Widget? secondButton,
   }) {
-    assert(context != null, "context is null!!");
-    assert(yourWidget != null, "yourWidget is null!!");
-    assert(firstButton != null, "button is null!!");
+
     return showGeneralDialog(
         context: context,
-        pageBuilder: (context, anim1, anim2) {},
+        pageBuilder: (context, anim1, anim2) {
+          return Container();
+        },
         barrierDismissible: true,
         barrierColor: Colors.black.withOpacity(0.7),
         barrierLabel: '',
@@ -150,14 +150,14 @@ class animated_dialog_box {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  icon,
+                  icon!,
                   Container(
                     height: 10,
                   ),
                   yourWidget
                 ],
               ),
-              actions: <Widget>[firstButton, secondButton],
+              actions: <Widget>[firstButton, secondButton!],
             ),
           );
         },
